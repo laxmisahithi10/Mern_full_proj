@@ -6,11 +6,11 @@ import Service from '../../utils/http';
 export const Fieldactivity = () => {
     const service = new Service();
     const [data, setData] = useState({});
-    const [notification, setNotification] = useState(null); // null | 'success' | 'error'
+    const [notification, setNotification] = useState(null);
 
     const handleSubmit = async () => {
         try {
-            const response = await service.post('reports', { ...data, status: 'Submitted' });
+            const response = await service.post('reports', { ...data});
             console.log(response);
             setNotification('success');
             setData({});
@@ -19,7 +19,6 @@ export const Fieldactivity = () => {
             console.error('Record submission failed', error.message);
             setNotification('error');
         }
-        setTimeout(() => setNotification(null), 3000);
     };
 
     return (

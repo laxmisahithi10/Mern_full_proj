@@ -4,7 +4,7 @@ import Service from '../../utils/http';
 import { Container } from '@mantine/core';
 import { useEffect, useState } from 'react';
 import { Avatar, Text, Stack, Loader} from '@mantine/core';
-//import { CssLoader } from '@mantine/core';
+
 
 export const Profilepage = () => {
     const service = new Service();
