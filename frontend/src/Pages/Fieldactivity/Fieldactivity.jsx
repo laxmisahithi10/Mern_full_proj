@@ -1,25 +1,22 @@
 import { useState } from 'react';
 import { Title, TextInput, Textarea, Select, NumberInput, Button, Stack, Notification } from '@mantine/core';
 import { DateInput } from '@mantine/dates';
+import Service from '../../utils/http';
 
 export const Fieldactivity = () => {
+    const service = new Service();
     const [data, setData] = useState({});
     const [notification, setNotification] = useState(null); // null | 'success' | 'error'
 
     const handleSubmit = async () => {
         try {
-            const response = await fetch('http://localhost:5000/reports', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ ...data, status: 'Submitted' }),
-            });
-
-            if (!response.ok) throw new Error('Failed to submit');
-
+            const response = await service.post('reports', { ...data, status: 'Submitted' });
+            console.log(response);
             setNotification('success');
             setData({});
-        } catch (error) {
-            console.error('Submit failed', error.message);
+        } 
+        catch (error) {
+            console.error('Record submission failed', error.message);
             setNotification('error');
         }
         setTimeout(() => setNotification(null), 3000);

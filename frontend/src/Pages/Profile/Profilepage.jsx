@@ -31,16 +31,6 @@ export const Profilepage = () => {
 
     if(loading){
         return <div>Loading....</div>
-        // return ({
-        //     components: {
-        //         Loader: Loader.extend({
-        //             defaultProps: {
-        //                 loaders: { ...Loader.defaultLoaders, custom: CssLoader },
-        //                 type: 'custom',
-        //             },
-        //         }),
-        //     },
-        // });
     }
     if(!user){
         return <div>User Not found</div>
