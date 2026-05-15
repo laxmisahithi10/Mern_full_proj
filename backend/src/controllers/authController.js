@@ -1,5 +1,5 @@
 import { OAuth2Client } from 'google-auth-library';
-import {User as userModel} from '../models/user/user.model.js';
+import {reports as ReportModel} from '../models/report.model.js';
 import jwt from 'jsonwebtoken';
 
 const oAuthClient = new OAuth2Client(
@@ -57,7 +57,8 @@ export const loginWithGoogle = async (req, res) => {
                     role: 'user'
                 });
 
-            } catch (error) {
+            }
+            catch (error) {
                 console.log("Error occurred while creating the user in mongodb in loginWithGoogle", error.message);
                 return res.status(500).json({ status: "INTERNAL_SERVER_ERROR", message: "Something went wrong while creating the user."});
             }

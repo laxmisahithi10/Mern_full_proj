@@ -4,9 +4,11 @@ import cookieParser from "cookie-parser";
 import path from "path";
 import { fileURLToPath } from "url";
 import morgan from "morgan"; // Import morgan
-import connectDB from "./db/dbConnect.js";
+import connectDB from "./db/connectdb.js";
 import { config } from "./config.js";
 import authRouter from "./routes/authRouter.js";
+import reportRouter from "./routes/reportRouter.js"
+
 const app = express();
 
 // middlewares
@@ -29,8 +31,7 @@ connectDB();
 
 
 app.use("/api/auth", authRouter);
-// app.use("/api/user", userRouter );
-// app.use("/api/s", shortURLRouter);
+app.use('/api/reports', reportRouter);
 
 
 app.use(express.static(path.join(__dirname, "../../frontend/dist")));
